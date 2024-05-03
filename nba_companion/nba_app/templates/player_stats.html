@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ reg_season_avg.FULL_NAME }} Regular Season Career Summary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center; /* Center align all text */
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        .content {
+            font-size: small;
+            display: inline-block; /* Make the div shrink-wrap around the content */
+            text-align: left; /* Align the content to the left */
+            max-width: 100%; /* Limit the maximum width of the content */
+            
+            overflow-x: auto; /* Add horizontal scroll if content overflows */
+        }
+        .centered {
+            margin: auto; /* Center horizontally */
+            width: 50%; /* Adjust the width as needed */
+        }
+        th, td {
+            padding: 8px; /* Add padding for better readability */
+            border: 1px solid black; /* Add borders to cells */
+        }
+        a {
+            margin: 10px; /* Adjust margin as needed */
+            color: darkred;
+            font-size: 20px;
+        }
+        h1 {
+            color: midnightblue;
+            font-size: 45px;
+        }
+        h2 {
+            color: midnightblue;
+        }
+        label {
+            position: absolute;
+            top: 10px; /* Adjust top position as needed */
+            left: 10px; /* Adjust left position as needed */
+            color: darkred;
+        }
+        select {
+            position: absolute;
+            top: 8px; /* Adjust top position as needed */
+            left: 112px; /* Adjust left position as needed */
+        }
+    </style>
+
+    <!-- Link to Home Page -->
+    <a href="/">Home</a>
+
+    <!-- Link to Regular Season Career Summary -->
+    <a href="/regular_season_career_summary/?player_name={{reg_season_avg.FULL_NAME}}">Regular Season Career Summary</a>
+
+    <!-- Link to Playoff Career Summary -->
+    <a href="/regular_season_career_summary/?player_name={{reg_season_avg.FULL_NAME}}">Playoff Career Summary</a>
+</head>
+<body>
+    <h1>{{ reg_season_avg.FULL_NAME|title }} Career Summary</h1>
+    <div class="centered">
+        {% if player_image_url %}
+            <img src="{{ player_image_url }}" alt="{{ reg_season_avg.FULL_NAME }} Image" width="273.684211" height="200">
+        {% else %}
+            <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png" alt="{{ reg_season_avg.FULL_NAME }} Image" width="273.684211" height="200">
+        {% endif %}
+        <label for="stats-type">Select Stats Type:</label>
+        <select id="stats-type" name="stats-type">
+            <option value="averages" {% if type == 'averages' %} selected {% endif %}>Career Averages</option>
+            <option value="totals" {% if type == 'totals' %} selected {% endif %}>Career Totals</option>
+        </select>
+        {% if type == 'averages' %}
+            <!-- Per Game Stats Table -->
+            <div class="content">
+                <!-- Table -->
+                <table>
+                    <tr>
+                        <th>GP</th>
+                        <th>MPG</th>
+                        <th>PPG</th>
+                        <th>RPG</th>
+                        <th>APG</th>
+                        <th>SPG</th>
+                        <th>BPG</th>
+                        <th>TPG</th>
+                        <th>FGM</th>
+                        <th>FGA</th>
+                        <th>FG_PCT</th>
+                        <th>FG3M</th>
+                        <th>FG3A</th>
+                        <th>FG3_PCT</th>
+                        <th>FTM</th>
+                        <th>FTA</th>
+                        <th>FT_PCT</th>
+                        <th>ORPG</th>
+                        <th>DRPG</th>
+                        <th>PF</th>
+                        <!-- Add more headers for other stats as needed -->
+                    </tr>
+                    <tr>
+                        <td>{{ reg_season_avg.GP }}</td>
+                        <td>{{ reg_season_avg.MPG }}</td>
+                        <td>{{ reg_season_avg.PPG }}</td>
+                        <td>{{ reg_season_avg.RPG }}</td>
+                        <td>{{ reg_season_avg.APG }}</td>
+                        <td>{{ reg_season_avg.SPG }}</td>
+                        <td>{{ reg_season_avg.BPG }}</td>
+                        <td>{{ reg_season_avg.TPG }}</td>
+                        <td>{{ reg_season_avg.FGM }}</td>
+                        <td>{{ reg_season_avg.FGA }}</td>
+                        <td>{{ reg_season_avg.FG_PCT }}</td>
+                        <td>{{ reg_season_avg.FG3M }}</td>
+                        <td>{{ reg_season_avg.FG3A }}</td>
+                        <td>{{ reg_season_avg.FG3_PCT }}</td>
+                        <td>{{ reg_season_avg.FTM }}</td>
+                        <td>{{ reg_season_avg.FTA }}</td>
+                        <td>{{ reg_season_avg.FT_PCT }}</td>
+                        <td>{{ reg_season_avg.ORPG }}</td>
+                        <td>{{ reg_season_avg.DRPG }}</td>
+                        <td>{{ reg_season_avg.PF }}</td>
+                        <!-- Add more cells for other stats as needed -->
+                    </tr>
+                </table>
+            </div>
+            <!-- Per Season Stats Table -->
+            <div class="content">
+                <h2>Per Season Stats</h2>
+                <table>
+                    <!-- Table headers -->
+                    <tr>
+                        <th>SEASON</th>
+                        <th>GP</th>
+                        <th>MIN</th>
+                        <th>PTS</th>
+                        <th>REB</th>
+                        <th>AST</th>
+                        <th>STL</th>
+                        <th>BLK</th>
+                        <th>TOV</th>
+                        <th>FGM</th>
+                        <th>FGA</th>
+                        <th>FG_PCT</th>
+                        <th>FG3M</th>
+                        <th>FG3A</th>
+                        <th>FG3_PCT</th>
+                        <th>FTM</th>
+                        <th>FTA</th>
+                        <th>FT_PCT</th>
+                        <th>OREB</th>
+                        <th>DREB</th>
+                        <th>PF</th>
+                        <!-- Add other headers here -->
+                    </tr>
+                    <!-- Table data -->
+                    {% for season_stat in reg_season_avg_per_season %}
+                    <tr>
+                        <td>{{ season_stat.SEASON_ID }}</td>
+                        <td>{{ season_stat.GP }}</td>
+                        <td>{{ season_stat.MPG }}</td>
+                        <td>{{ season_stat.PPG }}</td>
+                        <td>{{ season_stat.APG }}</td>
+                        <td>{{ season_stat.RPG }}</td>
+                        <td>{{ season_stat.SPG }}</td>
+                        <td>{{ season_stat.BPG }}</td>
+                        <td>{{ season_stat.TPG }}</td>
+                        <td>{{ season_stat.FGM }}</td>
+                        <td>{{ season_stat.FGA }}</td>
+                        <td>{{ season_stat.FG_PCT }}</td>
+                        <td>{{ season_stat.FG3M }}</td>
+                        <td>{{ season_stat.FG3A }}</td>
+                        <td>{{ season_stat.FG3_PCT }}</td>
+                        <td>{{ season_stat.FTM }}</td>
+                        <td>{{ season_stat.FTA }}</td>
+                        <td>{{ season_stat.FT_PCT }}</td>
+                        <td>{{ season_stat.ORPG }}</td>
+                        <td>{{ season_stat.DRPG }}</td>
+                        <td>{{ season_stat.PF }}</td>
+                        <!-- Add other cells here -->
+                    </tr>
+                    {% endfor %}
+                    <!-- Add more rows for other stats as needed -->
+                </table>
+            </div>
+        {% else %}
+            <div class="content">
+                <!-- Totals Stats Table -->
+                <table>
+                    <tr>
+                        <th>GP</th>
+                        <th>MIN</th>
+                        <th>PTS</th>
+                        <th>REB</th>
+                        <th>AST</th>
+                        <th>STL</th>
+                        <th>BLK</th>
+                        <th>TOV</th>
+                        <th>FGM</th>
+                        <th>FGA</th>
+                        <th>FG_PCT</th>
+                        <th>FG3M</th>
+                        <th>FG3A</th>
+                        <th>FG3_PCT</th>
+                        <th>FTM</th>
+                        <th>FTA</th>
+                        <th>FT_PCT</th>
+                        <th>OREB</th>
+                        <th>DREB</th>
+                        <th>PF</th>
+                        <!-- Add more headers for other stats as needed -->
+                    </tr>
+                    <tr>
+                        <td>{{ reg_season_totals.GP }}</td>
+                        <td>{{ reg_season_totals.MIN }}</td>
+                        <td>{{ reg_season_totals.PTS }}</td>
+                        <td>{{ reg_season_totals.REB }}</td>
+                        <td>{{ reg_season_totals.AST }}</td>
+                        <td>{{ reg_season_totals.STL }}</td>
+                        <td>{{ reg_season_totals.BLK }}</td>
+                        <td>{{ reg_season_totals.TOV }}</td>
+                        <td>{{ reg_season_totals.FGM }}</td>
+                        <td>{{ reg_season_totals.FGA }}</td>
+                        <td>{{ reg_season_totals.FG_PCT }}</td>
+                        <td>{{ reg_season_totals.FG3M }}</td>
+                        <td>{{ reg_season_totals.FG3A }}</td>
+                        <td>{{ reg_season_totals.FG3_PCT }}</td>
+                        <td>{{ reg_season_totals.FTM }}</td>
+                        <td>{{ reg_season_totals.FTA }}</td>
+                        <td>{{ reg_season_totals.FT_PCT }}</td>
+                        <td>{{ reg_season_totals.OREB }}</td>
+                        <td>{{ reg_season_totals.DREB }}</td>
+                        <td>{{ reg_season_totals.PF }}</td>
+                        <!-- Add more cells for other stats as needed -->
+                    </tr>
+                </table>
+            </div>
+            <!-- Total Per Season Stats Table -->
+            <div class="content">
+                <h2>Per Season Stats</h2>
+                <table>
+                    <!-- Table headers -->
+                    <tr>
+                        <th>SEASON</th>
+                        <th>GP</th>
+                        <th>MPG</th>
+                        <th>PPG</th>
+                        <th>RPG</th>
+                        <th>APG</th>
+                        <th>SPG</th>
+                        <th>BPG</th>
+                        <th>TPG</th>
+                        <th>FGM</th>
+                        <th>FGA</th>
+                        <th>FG_PCT</th>
+                        <th>FG3M</th>
+                        <th>FG3A</th>
+                        <th>FG3_PCT</th>
+                        <th>FTM</th>
+                        <th>FTA</th>
+                        <th>FT_PCT</th>
+                        <th>ORPG</th>
+                        <th>DRPG</th>
+                        <th>PF</th>
+                        <!-- Add other headers here -->
+                    </tr>
+                    <!-- Table data -->
+                    {% for season_stat in reg_season_totals_per_season %}
+                    <tr>
+                        <td>{{ season_stat.SEASON_ID }}</td>
+                        <td>{{ season_stat.GP }}</td>
+                        <td>{{ season_stat.MIN }}</td>
+                        <td>{{ season_stat.PTS }}</td>
+                        <td>{{ season_stat.AST }}</td>
+                        <td>{{ season_stat.REB }}</td>
+                        <td>{{ season_stat.STL }}</td>
+                        <td>{{ season_stat.BLK }}</td>
+                        <td>{{ season_stat.TOV }}</td>
+                        <td>{{ season_stat.FGM }}</td>
+                        <td>{{ season_stat.FGA }}</td>
+                        <td>{{ season_stat.FG_PCT }}</td>
+                        <td>{{ season_stat.FG3M }}</td>
+                        <td>{{ season_stat.FG3A }}</td>
+                        <td>{{ season_stat.FG3_PCT }}</td>
+                        <td>{{ season_stat.FTM }}</td>
+                        <td>{{ season_stat.FTA }}</td>
+                        <td>{{ season_stat.FT_PCT }}</td>
+                        <td>{{ season_stat.OREB }}</td>
+                        <td>{{ season_stat.DREB }}</td>
+                        <td>{{ season_stat.PF }}</td>
+                        <!-- Add other cells here -->
+                    </tr>
+                    {% endfor %}
+                    <!-- Add more rows for other stats as needed -->
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+    <script type="text/javascript">
+        const El = document.querySelectorAll('#stats-type')[0];
+
+        const onStatsType = (event) => {
+            const protocol = window.location.protocol;
+            const host = window.location.host;
+            const pathname = window.location.pathname;
+            let search = window.location.search;
+
+            if (search.indexOf('type') !== -1) {
+                search = search.replace(/&type=[A-a-Z-z]*/g, `&type=${event.target.value}`);
+            } else {
+                search += `&type=${event.target.value}`;
+            }
+
+            const url = `${protocol}//${host}${pathname}${search}`;
+
+            console.log(url);
+
+            location.href = url;
+        };
+
+        if (El) {
+            El.addEventListener('change', onStatsType);
+        }
+    </script>
+</body>
+</html>

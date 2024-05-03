@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center; /* Center align all text */
+            color: darkred;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 30px;
+        }
+        h1 {
+            margin-bottom: 50px; /* Add margin-bottom to create space */
+            color: midnightblue;
+            font-size: 50px;
+        }
+        .links a {
+            display: block; /* Display the heading and link as block elements */
+            margin: 20px auto; /* Center horizontally and add space */
+            width: fit-content; /* Set width to fit content */
+        }
+    </style>
+</head>
+<body>
+    <h1>WELCOME TO THE NBA COMPANION!</h1>
+    <div class="links">
+        <a href="{% url 'regular_season_career_summary' %}">Player Profile</a>
+        <a href="{% url 'regular_season_career_summary' %}">Regular Season Career Summary</a>
+        <a href="{% url 'regular_season_career_summary' %}">Playoff Career Summary</a>
+    </div>
+</body>
+</html>
