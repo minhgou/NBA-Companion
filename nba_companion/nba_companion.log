@@ -791,3 +791,7 @@ django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '
 2024-05-03 19:26:47,920 - INFO - Successfully loaded regular season career.
 2024-05-03 19:26:50,443 - INFO - Successfully loaded regular season career.
 2024-05-03 19:26:58,443 - INFO - Successfully loaded regular season career.
+2024-05-03 19:48:45,110 - INFO - /Users/minhgou/Desktop/GitHub/NBA-Companion/nba_companion/nba_app/utils.py changed, reloading.
+2024-05-03 19:48:52,153 - INFO - Successfully loaded regular season career.
+2024-05-03 19:51:56,643 - INFO - Successfully loaded regular season career.
+2024-05-03 19:52:06,094 - INFO - Successfully loaded regular season career.

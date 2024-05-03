@@ -135,6 +135,7 @@
                     <!-- Table headers -->
                     <tr>
                         <th>SEASON</th>
+                        <th>TEAM</th>
                         <th>GP</th>
                         <th>MIN</th>
                         <th>PTS</th>
@@ -161,6 +162,7 @@
                     {% for season_stat in reg_season_avg_per_season %}
                     <tr>
                         <td>{{ season_stat.SEASON_ID }}</td>
+                        <th>{{ season_stat.TEAM }}</th>
                         <td>{{ season_stat.GP }}</td>
                         <td>{{ season_stat.MPG }}</td>
                         <td>{{ season_stat.PPG }}</td>
@@ -246,6 +248,7 @@
                     <!-- Table headers -->
                     <tr>
                         <th>SEASON</th>
+                        <th>TEAM</th>
                         <th>GP</th>
                         <th>MPG</th>
                         <th>PPG</th>
@@ -272,6 +275,7 @@
                     {% for season_stat in reg_season_totals_per_season %}
                     <tr>
                         <td>{{ season_stat.SEASON_ID }}</td>
+                        <td>{{ season_stat.TEAM }}</td>
                         <td>{{ season_stat.GP }}</td>
                         <td>{{ season_stat.MIN }}</td>
                         <td>{{ season_stat.PTS }}</td>
