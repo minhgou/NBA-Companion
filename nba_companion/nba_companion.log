@@ -776,3 +776,7 @@ django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '
 2024-05-03 17:06:46,706 - INFO - Successfully loaded regular season career.
 2024-05-03 17:06:50,443 - INFO - Successfully loaded regular season career.
 2024-05-03 19:42:32,460 - INFO - Successfully loaded regular season career.
+2024-05-03 18:42:17,290 - WARNING - Not Found: /favicon.ico
+2024-05-03 18:42:45,732 - INFO - Successfully loaded regular season career.
+2024-05-03 18:43:14,709 - INFO - Successfully loaded regular season career.
+2024-05-03 18:43:21,021 - INFO - Successfully loaded regular season career.
