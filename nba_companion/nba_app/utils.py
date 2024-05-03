@@ -41,7 +41,7 @@ def get_regular_season_stats(player_name):
     # Retrieve player career statistics
     career = playercareerstats.PlayerCareerStats(player_id=player_id)
     career_stats = career.get_data_frames()[0]
-    career_stats = career_stats.rename(columns={'TEAM_ABBREVIATION': 'TEAM'})
+    career_stats = career_stats.rename(columns={'TEAM_ABBREVIATION': 'TEAM', 'PLAYER_AGE': 'AGE'})
 
     # Define column lists
     totals_cols = ['MIN', 'PTS', 'REB', 'AST', 'STL', 'BLK', 'TOV', 'FGM', 'FGA',
@@ -53,7 +53,7 @@ def get_regular_season_stats(player_name):
     percentage_stats = ['FG_PCT', 'FG3_PCT', 'FT_PCT']
 
     # Career Totals
-    career_totals_per_season = career_stats[['SEASON_ID', 'GP', 'TEAM'] + totals_cols].copy()
+    career_totals_per_season = career_stats[['SEASON_ID', 'AGE', 'GP', 'TEAM'] + totals_cols].copy()
     career_totals_per_season['FULL_NAME'] = player_name
 
     # Sum career totals and convert to int
@@ -66,16 +66,18 @@ def get_regular_season_stats(player_name):
             career_totals_per_season[col] = career_totals_per_season[col].astype(int)
 
     # Career Averages
-    career_avg_per_season = pd.DataFrame(columns=['FULL_NAME', 'SEASON_ID', 'TEAM', 'GP'] + per_game_cols)
+    career_avg_per_season = pd.DataFrame(columns=['FULL_NAME', 'SEASON_ID', 'AGE', 'TEAM', 'GP'] + per_game_cols)
 
     # Calculate per game averages
     for stat, per_game_stat in zip(totals_cols, per_game_cols):
         career_avg_per_season[per_game_stat] = round(career_stats[stat] / career_stats['GP'], 1)
 
-    career_avg_per_season['SEASON_ID'] = career_stats['SEASON_ID']
-    career_avg_per_season['GP'] = career_stats['GP']
     career_avg_per_season['FULL_NAME'] = player_name
+    career_avg_per_season['SEASON_ID'] = career_stats['SEASON_ID']
+    career_avg_per_season['AGE'] = career_stats['AGE']
     career_avg_per_season['TEAM'] = career_stats['TEAM']
+    career_avg_per_season['GP'] = career_stats['GP']
+    career_avg_per_season['AGE'] = career_avg_per_season['AGE'].astype('int')
 
     # Calculate career averages
     career_averages = {'FULL_NAME': player_name, 'GP': int(career_avg_per_season['GP'].sum())}

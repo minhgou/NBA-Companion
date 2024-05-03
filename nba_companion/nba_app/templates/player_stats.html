@@ -13,11 +13,10 @@
             font-family: 'Bebas Neue', sans-serif;
         }
         .content {
-            font-size: small;
+            font-size: 25px;
             display: inline-block; /* Make the div shrink-wrap around the content */
             text-align: left; /* Align the content to the left */
             max-width: 100%; /* Limit the maximum width of the content */
-            
             overflow-x: auto; /* Add horizontal scroll if content overflows */
         }
         .centered {
@@ -26,16 +25,16 @@
         }
         th, td {
             padding: 8px; /* Add padding for better readability */
-            border: 1px solid black; /* Add borders to cells */
+            border: 0.5px solid black; /* Add borders to cells */
         }
         a {
             margin: 10px; /* Adjust margin as needed */
             color: darkred;
-            font-size: 20px;
+            font-size: 25px;
         }
         h1 {
             color: midnightblue;
-            font-size: 45px;
+            font-size: 55px;
         }
         h2 {
             color: midnightblue;
@@ -45,11 +44,13 @@
             top: 10px; /* Adjust top position as needed */
             left: 10px; /* Adjust left position as needed */
             color: darkred;
+            font-size: 25px;
         }
         select {
             position: absolute;
             top: 8px; /* Adjust top position as needed */
-            left: 112px; /* Adjust left position as needed */
+            left: 165px; /* Adjust left position as needed */
+            font-size: 20px;
         }
     </style>
 
@@ -66,7 +67,7 @@
     <h1>{{ reg_season_avg.FULL_NAME|title }} Career Summary</h1>
     <div class="centered">
         {% if player_image_url %}
-            <img src="{{ player_image_url }}" alt="{{ reg_season_avg.FULL_NAME }} Image" width="273.684211" height="200">
+            <img src="{{ player_image_url }}" alt="{{ reg_season_avg.FULL_NAME }} Image" width="342" height="250">
         {% else %}
             <img src="https://cdn.nba.com/headshots/nba/latest/1040x760/fallback.png" alt="{{ reg_season_avg.FULL_NAME }} Image" width="273.684211" height="200">
         {% endif %}
@@ -135,6 +136,7 @@
                     <!-- Table headers -->
                     <tr>
                         <th>SEASON</th>
+                        <th>AGE</th>
                         <th>TEAM</th>
                         <th>GP</th>
                         <th>MIN</th>
@@ -162,6 +164,7 @@
                     {% for season_stat in reg_season_avg_per_season %}
                     <tr>
                         <td>{{ season_stat.SEASON_ID }}</td>
+                        <td>{{ season_stat.AGE }}</td>
                         <th>{{ season_stat.TEAM }}</th>
                         <td>{{ season_stat.GP }}</td>
                         <td>{{ season_stat.MPG }}</td>
@@ -248,6 +251,7 @@
                     <!-- Table headers -->
                     <tr>
                         <th>SEASON</th>
+                        <th>AGE</th>
                         <th>TEAM</th>
                         <th>GP</th>
                         <th>MPG</th>
@@ -275,6 +279,7 @@
                     {% for season_stat in reg_season_totals_per_season %}
                     <tr>
                         <td>{{ season_stat.SEASON_ID }}</td>
+                        <td>{{ season_stat.AGE }}</td>
                         <td>{{ season_stat.TEAM }}</td>
                         <td>{{ season_stat.GP }}</td>
                         <td>{{ season_stat.MIN }}</td>
