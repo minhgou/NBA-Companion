@@ -81,9 +81,10 @@ def get_regular_season_stats(player_name):
 
     # Convert percentage Stats
     for stat in percentage_stats:
-        career_totals_per_season[stat] = round(career_totals_per_season[stat] * 100, 1)
-        career_totals[stat] = round(career_totals[stat] / len(career_totals_per_season) * 100, 1)
         career_avg_per_season[stat] = round(career_stats[stat] * 100, 1)
+        career_averages[stat] = round(career_avg_per_season[stat].mean(), 1)
+        career_totals_per_season[stat] = round(career_totals_per_season[stat] * 100, 1)
+        career_totals[stat] = round(career_avg_per_season[stat].mean(), 1)
 
     # Convert DataFrames to dictionaries
     career_totals_per_season_json = career_totals_per_season.to_dict(orient='records')
