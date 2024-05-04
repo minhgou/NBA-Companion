@@ -846,3 +846,6 @@ django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '
 2024-05-03 20:17:39,729 - INFO - Successfully loaded regular season career.
 2024-05-03 20:18:34,368 - ERROR - Unable to find player: Expecting value: line 1 column 1 (char 0)
 2024-05-03 20:18:40,952 - INFO - Successfully loaded regular season career.
+2024-05-03 21:22:44,400 - INFO - Successfully loaded regular season career.
+2024-05-03 21:22:53,195 - INFO - Successfully loaded regular season career.
+2024-05-04 00:02:22,960 - INFO - /Users/minhgou/Desktop/GitHub/NBA-Companion/nba_companion/nba_app/utils.py changed, reloading.

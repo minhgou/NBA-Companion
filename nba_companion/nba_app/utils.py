@@ -14,15 +14,66 @@ import requests
 import pandas as pd
 from nba_api.stats.endpoints import playercareerstats
 from nba_api.stats.static import players
+from bs4 import BeautifulSoup
 
 
 def get_player_profile(player_name):
     """
     Gets general profile of NBA player.
     """
+    player_id = get_player_id_from_name(player_name)
+    player_bio_info = get_player_info(player_id)
     _, _, career_averages, _ = get_regular_season_stats(player_name)
 
-    return career_averages
+    return player_bio_info, career_averages
+
+
+def get_player_info(player_id):
+    """
+    Retrieve player information from the NBA website based on the provided player ID.
+
+    Args:
+        player_id (str): The unique identifier for the player.
+
+    Returns:
+        dict: A dictionary containing player information such as age, birth date, height, weight,
+              country, draft information, last attended, and experience. If any information is not
+              available, the corresponding value will be 'Unknown'.
+    """
+
+    url = f"https://www.nba.com/player/{player_id}"
+    response = requests.get(url)
+    player_info = {}
+    label_value_map = {
+        "AGE": "age",
+        "BIRTHDATE": "birthdate",
+        "HEIGHT": "height",
+        "WEIGHT": "weight",
+        "COUNTRY": "country",
+        "DRAFT": "draft",
+        "LAST ATTENDED": "last_attended",
+        "EXPERIENCE": "experience"
+        }
+
+    # Scrape data from NBA page
+    if response.url != 'https://www.nba.com/players' and response.status_code == 200:
+        soup = BeautifulSoup(response.content, 'html.parser')
+        labels = soup.find_all('p', class_='PlayerSummary_playerInfoLabel__hb5fs')
+        values = soup.find_all('p', class_='PlayerSummary_playerInfoValue__JS8_v')
+        
+        for label, value in zip(labels, values):
+            label_text = label.text.strip().upper()  # Ensure case insensitivity
+            value_text = value.text.strip()
+            key = label_value_map.get(label_text)
+            if key:
+                player_info[key] = value_text
+        return player_info
+    
+    # If response status is not 200, return default values
+    default_value = 'Unknown'
+    player_info = {key: default_value for key in label_value_map.values()}
+    return player_info
+
 
 def get_regular_season_stats(player_name):
     """

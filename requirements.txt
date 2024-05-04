@@ -2,3 +2,4 @@ Django
 pandas
 nba_api
 Flask
+bs4
