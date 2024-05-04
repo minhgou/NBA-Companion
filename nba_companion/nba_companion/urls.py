@@ -21,8 +21,13 @@ from nba_app import views
 urlpatterns = [
     path('', views.home, name='home'),
     path(
-        'regular_season_career_summary/',
+        'regular_season_career_search/',
         views.regular_season,
-        name='regular_season_career_summary'
+        name='regular_season_career_search'
+        ),
+    path(
+        'player_profile_search/',
+        views.player_profile,
+        name='player_profile_search'
         )
 ]

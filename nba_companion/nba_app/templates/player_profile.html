@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ reg_season_avg.FULL_NAME }} NBA Player Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            color: midnightblue;
+            font-family: "Bebas Neue", sans-serif;
+        }
+        form {
+            display: inline-block; /* Display the form as an inline-block element */
+            text-align: left; /* Align form elements to the left */
+        }
+        p {
+            color: crimson;
+        }
+        a {
+            margin: 10px;
+            color: darkred;
+            font-size: 25px;
+        }
+        h1 {
+            color: midnightblue;
+            font-size: 50px;
+        }
+        h2 {
+            color: darkred;
+            font-size: 40px;
+        }
+        .player-info img {
+            margin-right: 20px; /* Add margin to the right of the image */
+        }
+        .player-info ul {
+            list-style-type: none; /* Remove bullet points */
+        }
+    </style>
+    <a href="/">Home</a>
+
+    <!-- Link to Regular Season Career Summary -->
+    <a href="/regular_season_career_search/?player_name={{reg_season_avg.FULL_NAME}}">Regular Season Career Summary</a>
+
+    <!-- Link to Regular Season Career Summary -->
+    <a href="/regular_season_career_search/?player_name={{reg_season_avg.FULL_NAME}}">Playoff Career Summary</a>
+</head>
+<body>
+    <h1>NBA Player Profile</h1>
+    <div class="player-info">
+        <h2>{{ reg_season_avg.FULL_NAME }}</h2>
+        <img src="{{ player_image_url }}" alt="{{ reg_season_avg.FULL_NAME }}" width="273.684211" height="200">
+        <div>
+            <ul>
+                <li><strong>Age:</strong> {{ player_info.age }}</li>
+                <li><strong>Birthdate:</strong> {{ player_info.birthdate }}</li>
+                <li><strong>Height:</strong> {{ player_info.height }}</li>
+                <li><strong>Weight:</strong> {{ player_info.weight }}</li>
+                <li><strong>Country:</strong> {{ player_info.country }}</li>
+                <li><strong>Draft:</strong> {{ player_info.draft }}</li>
+                <li><strong>Last Attended:</strong> {{ player_info.last_attended }}</li>
+                <li><strong>Experience:</strong> {{ player_info.experience }}</li>
+            </ul>
+            <ul>
+                <li><strong>PPG:</strong> {{ reg_season_avg.PPG }}</li>
+                <li><strong>RPG:</strong> {{ reg_season_avg.RPG }}</li>
+                <li><strong>APG:</strong> {{ reg_season_avg.APG }}</li>
+                <li><strong>SPG:</strong> {{ reg_season_avg.SPG }}</li>
+                <li><strong>BPG:</strong> {{ reg_season_avg.BPG }}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

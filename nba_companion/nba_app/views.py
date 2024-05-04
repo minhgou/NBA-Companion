@@ -12,7 +12,7 @@ Functions:
 import json
 import logging
 from django.shortcuts import render
-from nba_app.utils import get_regular_season_stats, get_player_image
+from nba_app.utils import *
 
 
 # Configure logging
@@ -29,6 +29,40 @@ def home(request):
     """
 
     return render(request, 'home.html')
+
+
+def player_profile(request):
+    """
+    View that gets a specfied NBA player's NBA general profile.
+    """
+
+    try:
+        player_name = request.GET.get('player_name')
+
+        if player_name:
+            player_info, avg_per_game = get_player_profile(player_name)
+            player_image_url = get_player_image(player_name)
+
+            logging.info("Successfully loaded player profile.")
+
+            return render(request, 'player_profile.html',
+                            {
+                                "player_info": player_info,
+                                "reg_season_avg": json.loads(avg_per_game),
+                                "player_image_url": player_image_url
+                            }
+                            )
+        return render(request, 'player_profile_search.html')
+
+    except json.JSONDecodeError as error:
+        logging.error("Unable to find player: %s", error)
+        error_message = "Unable to find player. Please try again."
+
+        return render(
+            request,
+            'player_profile_search.html',
+            {'error_message': error_message}
+        )
 
 
 def regular_season(request):
@@ -49,17 +83,17 @@ def regular_season(request):
 
             logging.info("Successfully loaded regular season career.")
 
-            return render(request, 'player_stats.html',
+            return render(request, 'regular_season_career.html',
                           {
-                              'type' : stats_type,
-                              'reg_season_totals': json.loads(totals),
-                              'reg_season_totals_per_season': json.loads(totals_per_season),
-                              'reg_season_avg': json.loads(avg_per_game),
-                              'reg_season_avg_per_season': json.loads(avg_per_season),
-                              'player_image_url': player_image_url
+                              "type" : stats_type,
+                              "reg_season_totals": json.loads(totals),
+                              "reg_season_totals_per_season": json.loads(totals_per_season),
+                              "reg_season_avg": json.loads(avg_per_game),
+                              "reg_season_avg_per_season": json.loads(avg_per_season),
+                              "player_image_url": player_image_url
                           }
                           )
-        return render(request, 'regular_season_career_summary.html')
+        return render(request, 'regular_season_career_search.html')
 
     except json.JSONDecodeError as error:
         logging.error("Unable to find player: %s", error)
@@ -67,6 +101,6 @@ def regular_season(request):
 
         return render(
             request,
-            'regular_season_career_summary.html',
+            'regular_season_career_search.html',
             {'error_message': error_message}
         )

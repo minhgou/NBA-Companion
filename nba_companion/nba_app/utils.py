@@ -20,7 +20,15 @@ from bs4 import BeautifulSoup
 def get_player_profile(player_name):
     """
     Gets general profile of NBA player.
+
+    Args:
+    - player_name (str): Full name of current or former NBA player.
+
+    Returns:
+        - dict: A dictionary containing bio stats about the player.
+        - str: A JSON formatted string of the player's regular season averages.
     """
+    
     player_id = get_player_id_from_name(player_name)
     player_bio_info = get_player_info(player_id)
     _, _, career_averages, _ = get_regular_season_stats(player_name)
@@ -83,8 +91,8 @@ def get_regular_season_stats(player_name):
         - player_name (str): Full name of current or former NBA player.
 
     Returns:
-        - dict: A JSON object of the player's average stats over their career.
-        - dict: A JSON object containing regular-season stats data for each season.
+        - str: A JSON formatted string of the player's average stats over their career.
+        - str: A JSON formatted string containing regular-season stats data for each season.
     """
 
     player_id = get_player_id_from_name(player_name)

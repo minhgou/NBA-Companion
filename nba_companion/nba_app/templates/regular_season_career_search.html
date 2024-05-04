@@ -23,7 +23,7 @@
         a {
             margin: 10px;
             color: darkred;
-            font-size: 20px;
+            font-size: 25px;
         }
         h1 {
             margin-bottom: 50px; /* Add margin-bottom to create space */
@@ -34,17 +34,17 @@
     <a href="/">Home</a>
 
     <!-- Link to Regular Season Career Summary -->
-    <a href="/regular_season_career_summary/">Player Profile</a>
+    <a href="/player_profile_search/">Player Profile</a>
 
     <!-- Link to Regular Season Career Summary -->
-    <a href="/regular_season_career_summary/">Playoff Career Summary</a>
+    <a href="/regular_season_career_search/">Playoff Career Summary</a>
 </head>
 <body>
     <h1>NBA Player Regular Season Career Summary</h1>
     {% if error_message %}
         <p class="error-message">{{ error_message }}</p>
     {% endif %}
-    <form action="{% url 'regular_season_career_summary' %}" method="GET">
+    <form action="{% url 'regular_season_career_search' %}" method="GET">
         <input type="text" name="player_name" placeholder="Enter name of former or current NBA player" size="50">
         <button type="submit">Search</button>
     </form>
