@@ -28,7 +28,7 @@ def get_player_profile(player_name):
         - dict: A dictionary containing bio stats about the player.
         - str: A JSON formatted string of the player's regular season averages.
     """
-    
+
     player_id = get_player_id_from_name(player_name)
     player_bio_info = get_player_info(player_id)
     _, _, career_averages, _ = get_regular_season_stats(player_name)
@@ -50,7 +50,7 @@ def get_player_info(player_id):
     """
 
     url = f"https://www.nba.com/player/{player_id}"
-    response = requests.get(url)
+    response = requests.get(url, timeout=5)
     player_info = {}
     label_value_map = {
         "AGE": "age",
@@ -68,7 +68,7 @@ def get_player_info(player_id):
         soup = BeautifulSoup(response.content, 'html.parser')
         labels = soup.find_all('p', class_='PlayerSummary_playerInfoLabel__hb5fs')
         values = soup.find_all('p', class_='PlayerSummary_playerInfoValue__JS8_v')
-        
+
         for label, value in zip(labels, values):
             label_text = label.text.strip().upper()  # Ensure case insensitivity
             value_text = value.text.strip()
@@ -76,7 +76,7 @@ def get_player_info(player_id):
             if key:
                 player_info[key] = value_text
         return player_info
-    
+
     # If response status is not 200, return default values
     default_value = 'Unknown'
     player_info = {key: default_value for key in label_value_map.values()}
@@ -125,7 +125,9 @@ def get_regular_season_stats(player_name):
             career_totals_per_season[col] = career_totals_per_season[col].astype(int)
 
     # Career Averages
-    career_avg_per_season = pd.DataFrame(columns=['FULL_NAME', 'SEASON_ID', 'AGE', 'TEAM', 'GP'] + per_game_cols)
+    career_avg_per_season = pd.DataFrame(
+        columns=['FULL_NAME', 'SEASON_ID', 'AGE', 'TEAM', 'GP'] + per_game_cols
+        )
 
     # Calculate per game averages
     for stat, per_game_stat in zip(totals_cols, per_game_cols):
