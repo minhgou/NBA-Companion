@@ -1014,3 +1014,21 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'regular_season_career' not f
 2024-05-04 01:50:46,236 - INFO - Successfully loaded player profile.
 2024-05-04 01:51:30,914 - INFO - Successfully loaded regular season career.
 2024-05-04 01:51:46,400 - INFO - Successfully loaded player profile.
+2024-05-10 15:13:45,710 - INFO - Successfully loaded player profile.
+2024-05-10 15:14:21,574 - INFO - Successfully loaded player profile.
+2024-05-10 15:14:29,927 - INFO - Successfully loaded regular season career.
+2024-05-10 15:14:36,442 - INFO - Successfully loaded regular season career.
+2024-05-10 15:14:40,868 - INFO - Successfully loaded player profile.
+2024-05-10 15:14:51,160 - INFO - Successfully loaded player profile.
+2024-05-10 15:14:52,958 - INFO - Successfully loaded regular season career.
+2024-05-10 15:15:04,766 - INFO - Successfully loaded player profile.
+2024-05-10 15:15:06,027 - INFO - Successfully loaded regular season career.
+2024-05-10 15:16:05,133 - INFO - Successfully loaded regular season career.
+2024-05-10 15:16:08,229 - INFO - Successfully loaded regular season career.
+2024-05-10 15:16:12,066 - INFO - Successfully loaded regular season career.
+2024-05-17 11:00:27,721 - INFO - Successfully loaded player profile.
+2024-05-17 11:00:59,013 - INFO - Successfully loaded regular season career.
+2024-05-17 11:01:01,870 - INFO - Successfully loaded player profile.
+2024-05-17 11:01:19,207 - INFO - Successfully loaded regular season career.
+2024-05-17 11:01:21,105 - INFO - Successfully loaded regular season career.
+2024-05-17 11:01:24,117 - INFO - Successfully loaded regular season career.
